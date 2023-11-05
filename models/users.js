@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Info = require('./info.js')
 
 const UserSchema = new mongoose.Schema(
     {
@@ -40,6 +41,11 @@ const UserSchema = new mongoose.Schema(
         isAdmin:{
             type:Boolean,
             default:false
+        },
+        
+        info:{
+            type: mongoose.Schema.ObjectId,
+            ref: Info
         }
     },
     {timestamps:true}

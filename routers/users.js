@@ -6,4 +6,7 @@ router.get('/',(req,res) => {
     res.send("Hey, It is user route")
 })
 
+
+
+
 module.exports = router
