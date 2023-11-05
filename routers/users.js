@@ -9,6 +9,17 @@ router.get('/',(req,res) => {
     res.send("Hey, It is user route")
 })
 
+router.get('/:id',async(req,res) => {
+    try{
+        const user = await User.findById(req.params.id)
+        const info = await Info.find(user.info)
+        res.status(200).json({user,info})
+    }
+    catch(err){
+        res.status(400).json({success:false,error:err})
+    }
+})
+
 router.put('/:id',async(req,res) => {
     if(req.body.UserID === req.params.id || req.user.isAdmin){
         try{
