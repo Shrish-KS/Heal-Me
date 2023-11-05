@@ -1,23 +1,28 @@
 const express = require('express')
 const User = require('../models/users.js')
+const bcrypt = require("bcrypt")
 
 const router = express.Router()
 
 router.post('/register',async(req,res) => {
-    const user = await new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
-    })
     try{
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)
+        
+        const user = await new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: hashedPassword
+        })
+
         user.save()
-        res.status(200).json(user)
+        return res.status(200).json(user)
     }
     catch(err){
-        res.status(409).json({success:false,error:err})
+        return res.status(409).json({success:false,error:err})
     }
 
-    res.send("Hey, It is auth route")
+    return res.send("Hey, It is auth route")
 })
 
 module.exports = router
