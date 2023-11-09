@@ -80,7 +80,7 @@ router.put('/:id/follow',async (req,res) => {
                 res.status(403).json({success: false, message:"User already followed"})
             }
         }
-        catch{
+        catch(err){
             res.status(500).json({success: false, error:err})
         }
     }
@@ -105,7 +105,7 @@ router.put('/:id/unfollow',async (req,res) => {
                 res.status(403).json({success: false, message:"User not followed"})
             }
         }
-        catch{
+        catch(err){
             res.status(500).json({success: false, error:err})
         }
     }

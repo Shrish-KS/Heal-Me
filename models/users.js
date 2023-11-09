@@ -46,6 +46,10 @@ const UserSchema = new mongoose.Schema(
         info:{
             type: mongoose.Schema.ObjectId,
             ref: Info
+        },
+        Appoinments:{
+            type: Array,
+            default: []
         }
     },
     {timestamps:true}

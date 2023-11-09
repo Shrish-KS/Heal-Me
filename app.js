@@ -6,6 +6,7 @@ const dotenv = require('dotenv')
 const userRouter = require('./routers/users.js')
 const authRouter = require('./routers/auth.js')
 const postRouter = require('./routers/post.js')
+const appointRouter = require('./routers/appoint.js')
 
 dotenv.config()
 
@@ -22,6 +23,7 @@ app.use(morgan('common'))
 app.use('/api/users',userRouter)
 app.use('/api/auth',authRouter)
 app.use('/api/post',postRouter)
+app.use('/api/appointment',appointRouter)
 
 
 app.get('/',(req,res) => {
