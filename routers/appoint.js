@@ -28,6 +28,23 @@ router.post('/:id',async(req,res) => {
     }
 })
 
+
+router.delete('/:id',async(req,res) => {
+    try{
+        const appoint= await Appoint.findById(req.params.id)
+        const patient= await User.findById(appoint.patient)
+        const doctor = await User.findById(appoint.doctor)
+
+        await patient.updateOne({$pull: {Appoinments: appoint}})
+        await doctor.updateOne({$pull: {Appoinments: appoint}})
+        res.status(200).json({success:true,message:"Appointment deleted successfully"})
+    }
+    catch(err){
+        return res.status(500).json({success:false,error:err})
+    }
+})
+
+
 router.get('/:id',async(req,res) => {
     try{
         const user= User.findById(req.params.id)
