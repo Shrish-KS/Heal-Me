@@ -35,4 +35,6 @@ app.get('/users',(req,res) => {
 })
 
 
-app.listen(5000)
+app.listen(5000,()=>{
+  console.log("Listening in port 5000")
+})

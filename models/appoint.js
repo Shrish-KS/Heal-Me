@@ -13,11 +13,11 @@ const AppointSchema = new mongoose.Schema(
         },
         patient:{
             type: mongoose.Schema.ObjectId,
-            ref: Users
+            ref: User
         },
         doctor:{
             type: mongoose.Schema.ObjectId,
-            ref: Users
+            ref: User
         }
     },
     { timestamps:true}
